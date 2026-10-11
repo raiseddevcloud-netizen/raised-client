@@ -8,6 +8,7 @@ export default function Header({
   searchOpen,
   setSearchOpen,
   onNavigate,
+  isLightTheme,
 }) {
   return (
     <header className="site-header">
@@ -27,7 +28,10 @@ export default function Header({
           onNavigate("/");
         }}
       >
-        <img src="/images/logo-clean.svg" alt="" />
+        <img
+          src={isLightTheme ? "/images/logo-clean.svg" : "/images/logo-orange-bg.svg"}
+          alt=""
+        />
       </a>
       <div className="header-actions">
         {searchOpen && (

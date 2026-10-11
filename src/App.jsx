@@ -805,6 +805,7 @@ export default function App() {
     <div className={`app-shell${isLightTheme ? " theme-light" : ""}`}>
       <Header
         cartCount={count}
+        isLightTheme={isLightTheme}
         onCart={() => setCartOpen(true)}
         onMenu={() => setMenuOpen(true)}
         onSearch={setQuery}

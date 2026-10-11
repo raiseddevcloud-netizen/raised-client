@@ -84,9 +84,6 @@ select:focus-visible {
   height: 100px;
   object-fit: contain;
 }
-.app-shell:not(.theme-light) .brand-mark img {
-  background: #ff4d00;
-}
 .desktop-nav {
   display: flex;
   align-items: center;
