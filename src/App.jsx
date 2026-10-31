@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import ProductCard from "./components/ProductCard";
 import CartDrawer from "./components/CartDrawer";
+import OceanJourney from "./components/OceanJourney";
 import { formatPrice } from "./data/products";
 import {
   createShopifyCheckout,
@@ -763,6 +764,8 @@ export default function App() {
   const activeCategoryName = catalog.categories.find(
     (category) => category.handle === activeCategory,
   )?.title;
+  const CollectionHeading =
+    routePath === "/" && !query.trim() && !activeCategory ? "h2" : "h1";
   const addToCart = (product, size) => {
     setCart((old) => {
       const found = old.find((i) => i.id === product.id && i.size === size);
@@ -855,11 +858,30 @@ export default function App() {
         ) : (
           <>
             <main className="shop-section" id="shop">
-              {(query.trim() || activeCategoryName) && (
-                <div className="section-heading">
-                  <h2>{query.trim() ? "SEARCH RESULTS" : activeCategoryName}</h2>
-                </div>
+              {!query.trim() && !activeCategory && routePath === "/" && (
+                <OceanJourney />
               )}
+              <section className="collection-intro" id="collection-products">
+                <div>
+                  <p className="eyebrow">
+                    {query.trim()
+                      ? "PRODUCT SEARCH"
+                      : activeCategoryName
+                        ? "SHOP CATEGORY"
+                        : "RAIZED® / MUMBAI, INDIA"}
+                  </p>
+                  <CollectionHeading>
+                    {query.trim()
+                      ? "SEARCH RESULTS"
+                      : activeCategoryName || "THE COLLECTION"}
+                  </CollectionHeading>
+                </div>
+                <p className="collection-note">
+                  {query.trim()
+                    ? `Showing matches for “${query.trim()}”`
+                    : "Designed in Mumbai. Built for every day."}
+                </p>
+              </section>
               {catalogStatus === "loading" ? (
                 <div className="catalog-loader" role="status" aria-label="Loading products">
                   <img src="/images/logo-clean.svg" alt="" />
